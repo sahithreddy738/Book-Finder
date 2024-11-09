@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import BookList from "./components/BookList";
+import BookDetails from "./components/BookDetails";
+import Body from "./components/Body";
+import { Provider } from "react-redux";
+import appStore from "./utils/slices/appStore";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <Provider store={appStore}>
+      <BrowserRouter basename="/">
+      <ToastContainer/>
+          <Routes>
+            <Route path="/" element={<Home />}>
+              <Route path="/" element={<Body />} />
+              <Route path="/books/:title" element={<BookList />} />
+              <Route path="/works/:bookId" element={<BookDetails />} />
+            </Route>
+          </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
