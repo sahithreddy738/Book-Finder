@@ -24,7 +24,7 @@ const RelatedImages = () => {
                 className="w-full h-full object-cover rounded-md"
               ></img>
             </div>
-          )):<p>No related Images Available</p>}
+          )):<p className="font-poppins text-2xl">No related Images Available</p>}
       </div>
     </div>
   );
